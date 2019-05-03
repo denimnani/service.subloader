@@ -4,7 +4,7 @@
   <requires>
     <import addon="xbmc.python" version="2.14.0"/>
   </requires>
-  <extension point="xbmc.service" library="default.py" start="login"></extension>  
+  <extension point="xbmc.service" library="monitor.py" start="login"></extension>  
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Auto Search for Subtitles on Play</summary>
     <description lang="en">Auto Search for Subtitles on Playback start if no subs are found.</description>
