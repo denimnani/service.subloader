@@ -1,28 +1,28 @@
-﻿1.0.6 - By Denim
+﻿0.0.6 - By Denim
 - Added notifications if debug is enabled
 
-1.0.5 - By Denim
+0.0.5 - By Denim
 - Massive improve on video release types detection
 - Added ability to choose between strict or flexible subtitle matching
 
-1.0.4 - By Denim
+0.0.4 - By Denim
 - Several fixes
 - Improved release detection
 - Improved seasons and episodes matches
 - Removed translations (several changes were made)
 
-1.0.3 - By Denim
+0.0.3 - By Denim
 - Bug fixes
 - Added 3º language option
 - Improved IMDB number detection
 
-1.0.2 - By Denim
+0.0.2 - By Denim
 - Added a custom delay to start the service
 - Changed player trigger 
 - The script is now only compatible with kodi 18 or higher 
 - Added ability to actually donwload subtitles (Have used some code from an jen base addon all credits to the developer)
 
-1.0.1 - By Denim
+0.0.1 - By Denim
 - Initial release
 - Forked service.autosubs
 - All credits to the original developers
