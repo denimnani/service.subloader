@@ -152,8 +152,6 @@ def loadsub():
 			imdbid = 'None'
 
 
-#		file = urlparse.unquote(xbmc.Player().getPlayingFile().decode('utf-8'))
-
 		title = xbmc.getInfoLabel('Player.Filenameandpath')#funciona local
 		file = vidPath.split('/')[-1]#funciona em cache torrents seren
 
