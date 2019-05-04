@@ -1,0 +1,168 @@
+# Kodi Media Center language file
+# Addon Name: Sub Loader
+# Addon id: service.subloader
+# Addon Provider: DenimNani
+# Language: Portuguese (Portugal)
+
+msgid ""
+msgstr ""
+
+msgctxt "#32001"
+msgid "General"
+msgstr "Geral"
+
+msgctxt "#32002"
+msgid "Enable debug mode"
+msgstr "Ativar modo de depuração"
+
+msgctxt "#32003"
+msgid "Enable notifications"
+msgstr "Ativar notificações"
+
+msgctxt "#32004"
+msgid "Custom delay in X seconds"
+msgstr "Atraso personalizado em X segundos"
+
+msgctxt "#32005"
+msgid "Look for a specific language"
+msgstr "Procurar por idioma específico"
+
+msgctxt "#32006"
+msgid "Subtitle language"
+msgstr "Idioma das legendas"
+
+msgctxt "#32007"
+msgid "Exclusions"
+msgstr "Exclusões"
+
+msgctxt "#32008"
+msgid "Exclude videos with less than X minutes"
+msgstr "Excluir videos com menos de X minutos"
+
+msgctxt "#32009"
+msgid "Ignore words, comma separated<"
+msgstr "Ignorar palavras, separadas por vírgulas"
+
+msgctxt "#32010"
+msgid "Exclude live TV"
+msgstr "Excluir TV ao vivo"
+
+msgctxt "#32011"
+msgid "Exclude http sources"
+msgstr "Excluir fontes http"
+
+msgctxt "#32012"
+msgid "Exclude path"
+msgstr "Excluir caminho"
+
+msgctxt "#32013"
+msgid "Folder's path (and subfolders)"
+msgstr "Caminho para a pasta (e subpastas)"
+
+msgctxt "#32014"
+msgid "Subtitles"
+msgstr "Legendas"
+
+msgctxt "#32015"
+msgid "Enable subtitles"
+msgstr "Ativar legendas"
+
+msgctxt "#32016"
+msgid "Enable utf"
+msgstr "Ativar utf"
+
+msgctxt "#32017"
+msgid "Enable strict subtitle match"
+msgstr "Ativar modo rigoroso na correspondência de legenadas"
+
+msgctxt "#32018"
+msgid "1º Language"
+msgstr "1º Língua"
+
+msgctxt "#32019"
+msgid "2º Language"
+msgstr "2º Língua"
+
+msgctxt "#32020"
+msgid "3º Language"
+msgstr "3º Língua"
+
+msgctxt "#32021"
+msgid "Enable subtitles search as a fallback"
+msgstr "Ativar janela de pesquisa de legendas como alternativa"
+
+msgctxt "#32022"
+msgid ""
+msgstr ""
+
+msgctxt "#32023"
+msgid ""
+msgstr ""
+
+msgctxt "#32024"
+msgid ""
+msgstr ""
+
+msgctxt "#32025"
+msgid ""
+msgstr ""
+
+msgctxt "#32026"
+msgid ""
+msgstr ""
+
+msgctxt "#32027"
+msgid ""
+msgstr ""
+
+msgctxt "#32028"
+msgid ""
+msgstr ""
+
+msgctxt "#32029"
+msgid ""
+msgstr ""
+
+msgctxt "#32030"
+msgid ""
+msgstr ""
+
+msgctxt "#32031"
+msgid ""
+msgstr ""
+
+msgctxt "#32032"
+msgid ""
+msgstr ""
+
+msgctxt "#32033"
+msgid ""
+msgstr ""
+
+msgctxt "#32034"
+msgid ""
+msgstr ""
+
+msgctxt "#32035"
+msgid ""
+msgstr ""
+
+msgctxt "#32036"
+msgid ""
+msgstr ""
+
+msgctxt "#32037"
+msgid ""
+msgstr ""
+
+msgctxt "#32038"
+msgid ""
+msgstr ""
+
+msgctxt "#32039"
+msgid ""
+msgstr ""
+
+msgctxt "#32040"
+msgid ""
+msgstr ""
