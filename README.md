@@ -14,7 +14,7 @@ Currently the addon is in Alpha stage, there are some bugs and a lot of features
 The subloader will not download any subtitles if your content don't provide a valid IMDBNumber.
 So, most likly your episodes will not have IMDBNumber because Kodi scrapper do not provide it at episode level.
 For the 3 party addons it will work if there is an IMDBNumber and the file name with the media quality. 
-It will be added in future an auto query search by name if no IMDBNumber was foud.
+It will be added in future an auto query search by name if no IMDBNumber was found.
 
 > ### Development
 
