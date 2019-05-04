@@ -1,0 +1,168 @@
+# Kodi Media Center language file
+# Addon Name: Sub Loader
+# Addon id: service.subloader
+# Addon Provider: DenimNani
+# Language: English
+
+msgid ""
+msgstr ""
+
+msgctxt "#32001"
+msgid "General"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Enable debug mode"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Enable notifications"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Custom delay in X seconds"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Look for a specific language"
+msgstr ""
+
+msgctxt "#32006"
+msgid "Subtitle language"
+msgstr ""
+
+msgctxt "#32007"
+msgid "Exclusions"
+msgstr ""
+
+msgctxt "#32008"
+msgid "Exclude videos with less than X minutes"
+msgstr ""
+
+msgctxt "#32009"
+msgid "Ignore words, comma separated<"
+msgstr ""
+
+msgctxt "#32010"
+msgid "Exclude live TV"
+msgstr ""
+
+msgctxt "#32011"
+msgid "Exclude http sources"
+msgstr ""
+
+msgctxt "#32012"
+msgid "Exclude path"
+msgstr ""
+
+msgctxt "#32013"
+msgid "Folder's path (and subfolders)"
+msgstr ""
+
+msgctxt "#32014"
+msgid "Subtitles"
+msgstr ""
+
+msgctxt "#32015"
+msgid "Enable subtitles"
+msgstr ""
+
+msgctxt "#32016"
+msgid "Enable utf"
+msgstr ""
+
+msgctxt "#32017"
+msgid "Enable strict subtitle match"
+msgstr ""
+
+msgctxt "#32018"
+msgid "1º Language"
+msgstr ""
+
+msgctxt "#32019"
+msgid "2º Language"
+msgstr ""
+
+msgctxt "#32020"
+msgid "3º Language"
+msgstr ""
+
+msgctxt "#32021"
+msgid "Enable subtitles search as a fallback"
+msgstr ""
+
+msgctxt "#32022"
+msgid ""
+msgstr ""
+
+msgctxt "#32023"
+msgid ""
+msgstr ""
+
+msgctxt "#32024"
+msgid ""
+msgstr ""
+
+msgctxt "#32025"
+msgid ""
+msgstr ""
+
+msgctxt "#32026"
+msgid ""
+msgstr ""
+
+msgctxt "#32027"
+msgid ""
+msgstr ""
+
+msgctxt "#32028"
+msgid ""
+msgstr ""
+
+msgctxt "#32029"
+msgid ""
+msgstr ""
+
+msgctxt "#32030"
+msgid ""
+msgstr ""
+
+msgctxt "#32031"
+msgid ""
+msgstr ""
+
+msgctxt "#32032"
+msgid ""
+msgstr ""
+
+msgctxt "#32033"
+msgid ""
+msgstr ""
+
+msgctxt "#32034"
+msgid ""
+msgstr ""
+
+msgctxt "#32035"
+msgid ""
+msgstr ""
+
+msgctxt "#32036"
+msgid ""
+msgstr ""
+
+msgctxt "#32037"
+msgid ""
+msgstr ""
+
+msgctxt "#32038"
+msgid ""
+msgstr ""
+
+msgctxt "#32039"
+msgid ""
+msgstr ""
+
+msgctxt "#32040"
+msgid ""
+msgstr ""
