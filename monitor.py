@@ -9,7 +9,7 @@ import re,sys,json,time,xbmc
 import hashlib,urllib,os,base64,codecs,xmlrpclib
 import gzip, StringIO
 
-from resources.lib.opensubtitles import loadsub#verificar...
+from resources.lib.opensubtitles import loadsub
 
 
 __addon__ = xbmcaddon.Addon()
@@ -61,8 +61,8 @@ def isExcluded(movieFullPath):
         Debug("isExcluded(): Video is playing via Live TV, which is currently set as excluded location.")
         return False
 
-    if (movieFullPath.find("http://") > -1) and getSettingAsBool('ExcludeHTTP'):
-        Debug("isExcluded(): Video is playing via HTTP source, which is currently set as excluded location.")
+    if (movieFullPath.find("http://") > -1 or movieFullPath.find("https://") > -1) and getSettingAsBool('ExcludeHTTP'):
+        Debug("isExcluded(): Video is playing via HTTP or HTTPS source, which is currently set as excluded location.")
         return False
 
     ExcludePath = getSetting('ExcludePath')
@@ -99,7 +99,7 @@ def isExcluded(movieFullPath):
 
 
 class SubLoaderPlayer(xbmc.Player):
-    from resources.lib.opensubtitles import loadsub
+    #from resources.lib.opensubtitles import loadsub
     def __init__(self, *args, **kwargs):
         xbmc.Player.__init__(self)
         Debug("Initalized")
@@ -122,7 +122,7 @@ class SubLoaderPlayer(xbmc.Player):
         #file = xbmc.getInfoLabel('Player.Filenameandpath') #remover depois
         #title = xbmc.Player().getVideoInfoTag().getIMDBNumber() #remover depois
         #imdb = xbmc.Player().getVideoInfoTag().getIMDBNumber() #remover depois				
-        st = int((__addon__.getSetting('wait_source')))*1000
+        st = int((__addon__.getSetting('delay')))*1000
         # add --> self.run = True
 		
         if self.run:
@@ -141,7 +141,6 @@ class SubLoaderPlayer(xbmc.Player):
                 #xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
                 #xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (file, movieFullPath, 40000))
                 loadsub()
-                #self.loadsub()	na realidade assi a chamada existe
                 #xbmc.executebuiltin('XBMC.RunScript(special://home/addons/service.autosubs/resources/lib/OpenSubtitles.py)')										
             else:
                 Debug('Started: Subs found or Excluded')

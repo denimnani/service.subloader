@@ -1,9 +1,13 @@
-﻿0.0.6 - By Denim
-- Added notifications if debug is enabled
+﻿0.0.7 - By Denim
+- Added Portuguese language
+- Added ability to choose (subtitle search dialog) as a fallback
+
+0.0.6 - By Denim
+- Added notifications if enabled
 
 0.0.5 - By Denim
 - Massive improve on video release types detection
-- Added ability to choose between strict or flexible subtitle matching
+- Added ability to choose strict subtitle matching
 
 0.0.4 - By Denim
 - Several fixes

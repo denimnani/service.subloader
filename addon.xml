@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <addon id="service.subloader"
-    name="Sub Loader" version="0.0.6" provider-name="DenimNani">
+    name="Sub Loader" version="0.0.7" provider-name="DenimNani">
   <requires>
     <import addon="xbmc.python" version="2.14.0"/>
   </requires>
@@ -13,15 +13,26 @@
     <license>GPL</license>
     <website></website>
 	<assets>
-		<icon>IconSubLoader.png</icon>
-		<fanart>FanartSubLoader.png</fanart>
-		<screenshot>resources/media/screenshots/Screenshot1SubLoader.jpg</screenshot>
-		<screenshot>FanartSubLoader.png</screenshot>
+		<icon>iconsubloader.png</icon>
+		<fanart>fanartsubloader.png</fanart>
+		<screenshot>resources/media/screenshots/screenshot1subLoader.jpg</screenshot>
+		<screenshot>fanartsubloader.png</screenshot>
 	</assets>
     <source></source>
     <forum></forum>
     <email></email>
-	<news>0.0.1
+	<news>0.0.7
+Added Portuguese language
+Added ability to choose (subtitle search dialog) as a fallback
+
+0.0.6
+Added notifications if enabled
+
+0.0.5
+Massive improve on video release types detection
+Added ability to choose strict subtitle matching
+
+0.0.1
 Sub Loader is a fork from the well known autosubs addon.
 All credits to the original developers</news>
   </extension>
