@@ -152,6 +152,8 @@ def loadsub():
 			imdbid = 'None'
 
 
+#		file = urlparse.unquote(xbmc.Player().getPlayingFile().decode('utf-8'))
+
 		title = xbmc.getInfoLabel('Player.Filenameandpath')#funciona local
 		file = vidPath.split('/')[-1]#funciona em cache torrents seren
 
@@ -170,7 +172,7 @@ def loadsub():
 		sublanguageid = ','.join(langs)
 
 
-		if setting('debug') == 'true':
+		if setting('notif') == 'true':
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmto, file, 8000))
 
 
@@ -233,10 +235,11 @@ def loadsub():
 		xbmc.Player().setSubtitles(subtitle)
 	
 
-		if setting('debug') == 'true':
+		if setting('notif') == 'true':
 			xbmc.sleep(8000)
 			test = [filter[0]['MovieReleaseName'], ]
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (lang, test, 8000))
 
 	except Exception:
-		xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
+		if setting('subsearch') == 'true':
+			xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
