@@ -1,4 +1,7 @@
-﻿0.0.7 - By Denim
+0.0.8 - By Denim
+- Added query search if no valid IMDBNumber was found.
+
+0.0.7 - By Denim
 - Added Portuguese language
 - Added ability to choose (subtitle search dialog) as a fallback
 
