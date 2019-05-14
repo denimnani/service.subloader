@@ -25,15 +25,15 @@
 Added Portuguese language
 Added ability to choose (subtitle search dialog) as a fallback
 
-0.0.6
-Added notifications if enabled
+0.0.8
+- Added query search if no valid IMDBNumber was found.
 
-0.0.5
-Massive improve on video release types detection
-Added ability to choose strict subtitle matching
+0.0.7
+- Added Portuguese language.
+- Added ability to choose (subtitle search dialog) as a fallback.
 
 0.0.1
 Sub Loader is a fork from the well known autosubs addon.
-All credits to the original developers</news>
+All credits to the original developers.</news>
   </extension>
 </addon>
