@@ -26,9 +26,9 @@ def loadsub():
 	try:
 		addon = "service.subloader"#alterar quando estiver tudo ligado
 		setting = xbmcaddon.Addon(addon).getSetting
-#		lang = xbmcaddon.Addon(addon).getLocalizedString#testar utilidade
-
-
+		server = xmlrpclib.Server('http://api.opensubtitles.org/xml-rpc', verbose=0)
+		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_v1')['token']
+		media = xbmc.Player().getVideoInfoTag().getMediaType()
 
 
 
@@ -64,18 +64,31 @@ def loadsub():
 		filter = []
 		
 
-# ver melhor questão do HDrip
 
-	
+
+# Get IMDBNumber or Name ************************************************************************************************************
+
 		imdb = xbmc.Player().getVideoInfoTag().getIMDBNumber()
-#		imdbid = re.sub('[^0-9]', '', imdb)
-#		title = xbmc.Player().getVideoInfoTag().getTitle()#apenas para teste
-		season = xbmc.Player().getVideoInfoTag().getSeason()
-		episode = xbmc.Player().getVideoInfoTag().getEpisode()
-		server = xmlrpclib.Server('http://api.opensubtitles.org/xml-rpc', verbose=0)
-		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_v1')['token']
 
-#		fmt = ['bluray']#teste
+		if imdb.ljust(2)[:2].strip() == 'tt':
+			imdbid = re.sub('[^0-9]', '', imdb)
+		else:
+			imdbid = 'None'
+			if media == 'movie' or media == 'video':
+				title = (xbmc.Player().getVideoInfoTag().getOriginalTitle()).lower()
+				year = xbmc.Player().getVideoInfoTag().getYear()
+				query = title + " " + str(year)
+			if media == 'episode':
+				query = (xbmc.Player().getVideoInfoTag().getTVShowTitle()).lower()
+				season = xbmc.Player().getVideoInfoTag().getSeason()
+				episode = xbmc.Player().getVideoInfoTag().getEpisode()
+			else:
+				raise Exception()
+
+#************************************************************************************************************************************
+
+
+
 
 		vidPath = xbmc.Player().getPlayingFile()
 
@@ -126,12 +139,12 @@ def loadsub():
 		if fmtst == 'vob' or fmtst == 'vodrip' or fmtst == 'vodr':
 			fmt = ['r5', 'r5line', 'line', 'r5.line', 'r5-line', 'r5 line']
 			fmtflex = fmt
-		if fmtst == 'webdl' or fmtst == 'webdlrip' or fmtst == 'dl' or fmtst == 'hdrip':
+		if fmtst == 'webdl' or fmtst == 'webdlrip' or fmtst == 'dl':
 			fmt = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip']
-			fmtflex = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip', 'webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'webcap', 'web-cap', 'web.cap', 'web cap', 'hdrip']
+			fmtflex = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip', 'webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'web', 'webcap', 'web-cap', 'web.cap', 'web cap', 'hdrip']
 		if fmtst == 'webrip' or fmtst == 'webr' or fmtst == 'webcap' or fmtst == 'web' or fmtst == 'cap':
-			fmt = ['webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'webcap', 'web-cap', 'web.cap', 'web cap']
-			fmtflex = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip', 'webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'webcap', 'web-cap', 'web.cap', 'web cap', 'hdrip']
+			fmt = ['webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'web', 'webcap', 'web-cap', 'web.cap', 'web cap']
+			fmtflex = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip', 'webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'web', 'webcap', 'web-cap', 'web.cap', 'web cap', 'hdrip']
 		if fmtst == 'bluray' or fmtst == 'blurayrip' or fmtst == 'blu' or fmtst == 'ray':
 			fmt = ['blu', 'ray', 'bluray', 'blu-ray', 'blu.ray', 'blu ray']
 			fmtflex = ['blu', 'ray', 'bluray', 'blu-ray', 'blu.ray', 'blu ray', 'bdrip', 'bd-rip', 'bd.rip', 'bd rip', 'brrip', 'br-rip', 'br.rip', 'br rip', 'brip', 'b-rip', 'b.rip', 'b rip', 'bdmv']
@@ -140,22 +153,19 @@ def loadsub():
 			fmtflex = ['blu', 'ray', 'bluray', 'blu-ray', 'blu.ray', 'blu ray', 'bdrip', 'bd-rip', 'bd.rip', 'bd rip', 'brrip', 'br-rip', 'br.rip', 'br rip', 'brip', 'b-rip', 'b.rip', 'b rip', 'bdmv']
 		if fmtst == 'hdrip':
 			fmt = ['hdrip', 'hd-rip', 'hd rip', 'hd.rip']
-			fmtflex = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip', 'hdrip', 'webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'webcap', 'web-cap', 'web.cap', 'web cap']
+			fmtflex = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip', 'hdrip', 'webrip', 'web-rip', 'web.rip', 'web rip', 'webr', 'web', 'webcap', 'web-cap', 'web.cap', 'web cap']
 
 
 
 
 
-		if imdb.ljust(2)[:2].strip() == 'tt':
-			imdbid = re.sub('[^0-9]', '', imdb)
-		else:
-			imdbid = 'None'
+
 
 
 #		file = urlparse.unquote(xbmc.Player().getPlayingFile().decode('utf-8'))
 
-		title = xbmc.getInfoLabel('Player.Filenameandpath')#funciona local
-		file = vidPath.split('/')[-1]#funciona em cache torrents seren
+		filelocal = xbmc.getInfoLabel('Player.Filenameandpath')#funciona local
+		filestr = vidPath.split('/')[-1]#funciona em cache torrents seren
 
 
 		if setting('subtitles') == 'true':
@@ -173,14 +183,21 @@ def loadsub():
 
 
 		if setting('notif') == 'true':
-			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmto, file, 8000))
+			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmto, filestr, 8000))
 
 
 
-		if not (season and episode) == -1:
-			result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'imdbid': imdbid, 'season': season, 'episode': episode}])['data']
+
+		if media == 'episode':
+			if imdbid is not 'None':
+				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'imdbid': imdbid, 'season': season, 'episode': episode}])['data']
+			else:
+				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'query': query, 'season': season, 'episode': episode}])['data']
 		else:
-			result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'imdbid': imdbid}])['data']
+			if imdbid is not 'None':
+				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'imdbid': imdbid}])['data']
+			else:
+				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'query': query}])['data']
 
 
 
@@ -205,7 +222,7 @@ def loadsub():
 				for lang in langs:
 					filter += [i for i in result if i['SubLanguageID'] == lang and any(x in i['MovieReleaseName'].lower() for x in fmtflex)]
 					lang = filter[0]['SubLanguageID']
-
+# colocar aqui um raise exception e criar log...
 
 
 
@@ -236,7 +253,7 @@ def loadsub():
 	
 
 		if setting('notif') == 'true':
-			xbmc.sleep(8000)
+#			xbmc.sleep(8000)
 			test = [filter[0]['MovieReleaseName'], ]
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (lang, test, 8000))
 
