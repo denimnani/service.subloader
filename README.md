@@ -11,10 +11,10 @@ There are custom settings to trigger the service.
 > ### Issues
 
 Currently the addon is in Alpha stage, there are some bugs and a lot of features to add.
-The subloader will not download any subtitles if your content don't provide a valid IMDBNumber.
+If you use this addon and have installed the addon "service.autosubs" please disable it, otherwise the subloader will not perform properly.
+The subloader need an valid IMDBNumber and the file name with the media quality to work properly, if your content don't provide a valid IMDBNumber the addon will try by query serch. This type of serch take some time to complete, in most cases at least 10 seconds.
 So, most likly your episodes will not have IMDBNumber because Kodi scrapper do not provide it at episode level.
-For the 3 party addons it will work if there is an IMDBNumber and the file name with the media quality. 
-It will be added in future an auto query search by name if no IMDBNumber was found.
+For now the addon is only compatible with Kodi 18.0 or higher.
 
 > ### Development
 
