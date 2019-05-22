@@ -1,3 +1,7 @@
+0.0.9 - By Denim
+- Release type detection improved.
+- More clean up.
+
 0.0.8 - By Denim
 - Added query search if no valid IMDBNumber was found.
 - Clean up.
