@@ -21,7 +21,11 @@
     <source></source>
     <forum></forum>
     <email></email>
-	<news>0.0.8
+	<news>0.0.9
+Release type detection improved.
+More clean up.
+		
+0.0.8
 Added query search if no valid IMDBNumber was found.
 Clean up.
 
@@ -31,9 +35,5 @@ Added ability to choose (subtitle search dialog) as a fallback.
 
 0.0.6
 Added notifications, if enabled.
-
-0.0.1
-Sub Loader is a fork from the well known autosubs addon.
-All credits to the original developers.</news>
   </extension>
 </addon>
