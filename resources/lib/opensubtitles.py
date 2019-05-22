@@ -54,7 +54,7 @@ def loadsub():
 		
 
 
-		if setting('subtitles') == 'true':
+		if setting('subtitles'):
 			langs.append(langDict[setting('subtitles.lang.1')])
 			if not setting('subtitles.lang.2') == 'None':
 				langs.append(langDict[setting('subtitles.lang.2')])
@@ -63,8 +63,6 @@ def loadsub():
 		else:
 			raise Exception()
 			
-
-
 		sublanguageid = ','.join(langs)
 
 
@@ -109,8 +107,12 @@ def loadsub():
 			if fmt:
 				fmtst = ''.join(fmt)
 			else:
-				xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % ("Opening sub dialog", "No release type detected", 5000))
-				raise Exception()
+				if setting('notif') and setting('subsearch'):
+					xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % ("Opening sub dialog", "No release type detected", 5000))
+					raise Exception()
+				else:
+					raise Exception()
+				
 
 #************************************************************************************************************************************
 
@@ -176,7 +178,7 @@ def loadsub():
 
 
 
-		if setting('notif') == 'true':
+		if setting('notif'):
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmtst, filestr, 4000))
 
 
@@ -210,7 +212,7 @@ def loadsub():
 		try:
 			lang = filter[0]['SubLanguageID']
 		except Exception:
-			if setting('strict') == 'true':
+			if setting('strict'):
 				raise Exception()
 			else:
 				for lang in langs:
@@ -246,11 +248,11 @@ def loadsub():
 		xbmc.Player().setSubtitles(subtitle)
 	
 
-		if setting('notif') == 'true':
+		if setting('notif'):
 			xbmc.sleep(4000)
 			test = [filter[0]['MovieReleaseName'], ]
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (lang, test, 4000))
 
 	except Exception:
-		if setting('subsearch') == 'true':
+		if setting('subsearch'):
 			xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
