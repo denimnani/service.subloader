@@ -1,24 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import os
-import sys
-import xbmc
-import xbmcaddon
-import base64
-import gzip
-import xmlrpclib
-import xbmcvfs
-import StringIO
-import re
-#ver apartir daqui
-import xbmcgui
-import codecs
-import hashlib
-import json
-import urlparse
-import urllib
-import xbmcplugin
+import os, sys, xbmc, xbmcaddon, xbmcgui
+import base64, gzip, xmlrpclib, xbmcvfs
+import StringIO, re, hashlib, json, urlparse
+import codecs, urllib, xbmcplugin
+
+
 
 
 def loadsub():
@@ -27,7 +15,8 @@ def loadsub():
 		addon = "service.subloader"#alterar quando estiver tudo ligado
 		setting = xbmcaddon.Addon(addon).getSetting
 		server = xmlrpclib.Server('http://api.opensubtitles.org/xml-rpc', verbose=0)
-		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_v1')['token']
+#		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_v1')['token'] (token antigo)
+		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_Unofficial_v5.2.15')['token']
 		media = xbmc.Player().getVideoInfoTag().getMediaType()
 
 
@@ -65,6 +54,21 @@ def loadsub():
 		
 
 
+		if setting('subtitles') == 'true':
+			langs.append(langDict[setting('subtitles.lang.1')])
+			if not setting('subtitles.lang.2') == 'None':
+				langs.append(langDict[setting('subtitles.lang.2')])
+			if not setting('subtitles.lang.3') == 'None':
+				langs.append(langDict[setting('subtitles.lang.3')])
+		else:
+			raise Exception()
+			
+
+
+		sublanguageid = ','.join(langs)
+
+
+
 
 # Get IMDBNumber or Name ************************************************************************************************************
 
@@ -89,26 +93,27 @@ def loadsub():
 
 
 
+# Get release type ******************************************************************************************************************
 
 		vidPath = xbmc.Player().getPlayingFile()
-
-		fmt = re.split('\.|\(|\)|\[|\]|\s|\-', vidPath)
+		fmt = re.split('[.:;()[\]{}\\\\/\s\&\€\#\=\$\?\!\%\+\-_\*]', vidPath)
 		fmt = [i.lower() for i in fmt]
 		fmt = [i for i in fmt if i in release]
-#		if fmt == '[]':
-#			fmt = [any x in i(re.split('\.|\(|\)|\[|\]|\s|\-', vidPath)).lower() for x in release]
 
-		fmto = fmt#apenas para testes
-		fmtst = ''.join(fmt)
+		if fmt:
+			fmtst = ''.join(fmt)
+		else:
+			fmt = re.split('[.:;()[\]{}\\\\/\s\&€\#\=\$\?\!%\+\-_\*[0-9]', vidPath)
+			fmt = [i.lower() for i in fmt]
+			fmt = [i for i in fmt if i in release]
+			if fmt:
+				fmtst = ''.join(fmt)
+			else:
+				xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % ("Opening sub dialog", "No release type detected", 5000))
+				raise Exception()
 
+#************************************************************************************************************************************
 
-
-
-
-
-
-
-#any(x in i['MovieReleaseName'].lower() for x in fmt)]
 
 
 
@@ -162,28 +167,17 @@ def loadsub():
 
 
 
-#		file = urlparse.unquote(xbmc.Player().getPlayingFile().decode('utf-8'))
+
 
 		filelocal = xbmc.getInfoLabel('Player.Filenameandpath')#funciona local
 		filestr = vidPath.split('/')[-1]#funciona em cache torrents seren
 
 
-		if setting('subtitles') == 'true':
-			langs.append(langDict[setting('subtitles.lang.1')])
-			if not setting('subtitles.lang.2') == 'None':
-				langs.append(langDict[setting('subtitles.lang.2')])
-			if not setting('subtitles.lang.3') == 'None':
-				langs.append(langDict[setting('subtitles.lang.3')])
-		else:
-			raise Exception()
-			
 
-
-		sublanguageid = ','.join(langs)
 
 
 		if setting('notif') == 'true':
-			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmto, filestr, 8000))
+			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmtst, filestr, 4000))
 
 
 
@@ -253,9 +247,9 @@ def loadsub():
 	
 
 		if setting('notif') == 'true':
-#			xbmc.sleep(8000)
+			xbmc.sleep(4000)
 			test = [filter[0]['MovieReleaseName'], ]
-			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (lang, test, 8000))
+			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (lang, test, 4000))
 
 	except Exception:
 		if setting('subsearch') == 'true':
