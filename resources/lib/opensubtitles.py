@@ -94,7 +94,7 @@ def loadsub():
 # Get release type ******************************************************************************************************************
 
 		vidPath = xbmc.Player().getPlayingFile()
-		fmt = re.split('[.:;()[\]{}\\\\/\s\&\€\#\=\$\?\!\%\+\-_\*]', vidPath)
+		fmt = re.split('[.:;()[\]{}\\\\/\s\&\€\#\=\$\?\!\%\+_\*]', vidPath)
 		fmt = [i.lower() for i in fmt]
 		fmt = [i for i in fmt if i in release]
 
