@@ -136,7 +136,7 @@ class SubLoaderPlayer(xbmc.Player):
 			
             if (xbmc.Player().isPlayingVideo() and totalTime > ExcludeTime and ((not xbmc.getCondVisibility("VideoPlayer.HasSubtitles")) or (check_for_specific and not specific_language in availableLangs)) and all(movieFullPath.find (v) <= -1 for v in ignore_words) and (isExcluded(movieFullPath)) ):
                 self.run = False			
-                xbmc.sleep(1000)		
+                xbmc.sleep(500)		
                 Debug('Started: AutoSearching for Subs')
                 #xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
                 #xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (file, movieFullPath, 40000))
