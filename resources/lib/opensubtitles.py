@@ -43,10 +43,11 @@ def loadsub():
 
 		release = ['cam', 'camrip', 'telesync', 'ts', 'hdts', 'hc', 'hcrip', 'pdvd', 'predvdrip', 
 			'telecine', 'tc', 'hdtc', 'ppv', 'ppvrip', 'screener', 'scr', 'dvdscr', 'dvdcreener', 'bdscr', 
-			'r5', 'r5line', 'line', 'dvd', 'dvdrip', 'dvdr', 'dvdmux', 'dvdfull', 'dvd5', 'dvd9', 
-			'hdtv', 'dsr', 'dsrip', 'satrip', 'dthrip', 'dvbrip', 'pdtv', 'dtvrip', 'tvrip', 'hdtvrip', 
-			'vod', 'vodrip', 'vodr', 'webdl', 'webdlrip', 'web', 'hdrip', 'webrip', 'webr', 'webcap', 
-			'blu', 'ray', 'bluray', 'bdrip', 'brip', 'brrip', 'bdmv', 'rip', 'dl', 'cap', 'divx', 'xvid']
+			'line', 'dvd', 'dvdrip', 'dvdr', 'dvdmux', 'dvdfull', 'hdtv', 'dsr', 'dsrip', 'satrip', 'dthrip', 
+			'dvbrip', 'pdtv', 'dtvrip', 'tvrip', 'hdtvrip', 'vod', 'vodrip', 'vodr', 'webdl', 'webdlrip', 'web', 
+			'hdrip', 'webrip', 'webr', 'webcap', 'bluray', 'bdrip', 'brip', 'brrip', 'bdmv', 'divx', 'xvid']
+
+		secrelease = ['rip', 'dl', 'cap', 'blu', 'ray']
 
 		langs = []
 
@@ -54,7 +55,7 @@ def loadsub():
 		
 
 
-		if setting('subtitles'):
+		if setting('subtitles') == 'true':
 			langs.append(langDict[setting('subtitles.lang.1')])
 			if not setting('subtitles.lang.2') == 'None':
 				langs.append(langDict[setting('subtitles.lang.2')])
@@ -82,10 +83,11 @@ def loadsub():
 				query = title + " " + str(year)
 			if media == 'episode':
 				query = (xbmc.Player().getVideoInfoTag().getTVShowTitle()).lower()
-				season = xbmc.Player().getVideoInfoTag().getSeason()
-				episode = xbmc.Player().getVideoInfoTag().getEpisode()
 			else:
 				raise Exception()
+		if media == 'episode':
+			season = xbmc.Player().getVideoInfoTag().getSeason()
+			episode = xbmc.Player().getVideoInfoTag().getEpisode()
 
 #************************************************************************************************************************************
 
@@ -94,25 +96,30 @@ def loadsub():
 # Get release type ******************************************************************************************************************
 
 		vidPath = xbmc.Player().getPlayingFile()
-		fmt = re.split('[.:;()[\]{}\\\\/\s\&\€\#\=\$\?\!\%\+_\*]', vidPath)
+		fmt = re.split('[.:;()[\]{}\\\\/\s\&€\#\=\$\?\!%\+\-_\*[0-9]', vidPath)
 		fmt = [i.lower() for i in fmt]
 		fmt = [i for i in fmt if i in release]
+		fmt = list(dict.fromkeys(fmt))
+		fmtst = ''.join(fmt)
+		secvidPath = vidPath.split(fmtst)[-1]
+		secfmt = re.split('[.:;()[\]{}\\\\/\s\&€\#\=\$\?\!%\+\-_\*[0-9]', secvidPath)
+		secfmt = [i.lower() for i in secfmt]
+		secfmt = [i for i in secfmt if i in secrelease]
+		secfmt = list(dict.fromkeys(secfmt))
+		fmt = fmt + secfmt
 
 		if fmt:
-			fmtst = ''.join(fmt)
+			fmtst = fmtst + (''.join(secfmt))
 		else:
-			fmt = re.split('[.:;()[\]{}\\\\/\s\&€\#\=\$\?\!%\+\-_\*[0-9]', vidPath)
-			fmt = [i.lower() for i in fmt]
-			fmt = [i for i in fmt if i in release]
-			if fmt:
-				fmtst = ''.join(fmt)
+			if setting('notif') == 'true' and setting('subsearch') == 'true':
+				xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % ("Opening sub dialog", "No release type detected", 5000))
+				raise Exception()
 			else:
-				if setting('notif') and setting('subsearch'):
-					xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % ("Opening sub dialog", "No release type detected", 5000))
+				if setting('notif') == 'true':
+					xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % ("Aborting", "No release type detected", 5000))
 					raise Exception()
 				else:
 					raise Exception()
-				
 
 #************************************************************************************************************************************
 
@@ -134,17 +141,17 @@ def loadsub():
 		if fmtst == 'screener' or fmtst == 'scr' or fmtst == 'dvdscr' or fmtst == 'dvdcreener' or fmtst == 'bdscr':
 			fmt = ['screener', 'scr', 'dvdscr', 'dvdcreener', 'bdscr']
 			fmtflex = ['screener', 'scr', 'dvdscr', 'dvdcreener', 'bdscr', 'dvd', 'dvd-r', 'dvdrip', 'dvd rip', 'dvdr', 'dvdmux', 'dvdfull', 'dvd5', 'dvd9', 'dvd-rip', 'dvd.rip', 'dvd-mux', 'dvd.mux', 'dvd-5', 'dvd-9']
-		if fmtst == 'r5' or fmtst == 'r5line' or fmtst == 'line':
+		if fmtst == 'line':
 			fmt = ['r5', 'r5line', 'line', 'r5.line', 'r5-line', 'r5 line']
 			fmtflex = fmt
-		if fmtst == 'dvd' or fmtst == 'dvdrip' or fmtst == 'dvdr' or fmtst == 'dvdmux' or fmtst == 'dvdfull' or fmtst == 'dvd5' or fmtst == 'dvd9':
+		if fmtst == 'dvd' or fmtst == 'dvdrip' or fmtst == 'dvdr' or fmtst == 'dvdmux' or fmtst == 'dvdfull':
 			fmt = ['dvd', 'dvd-r', 'dvdrip', 'dvdr', 'dvdmux', 'dvdfull', 'dvd5', 'dvd9', 'dvd-rip', 'dvd rip', 'dvd.rip', 'dvd-mux', 'dvd.mux', 'dvd-5', 'dvd-9']
 			fmtflex = ['screener', 'scr', 'dvdscr', 'dvdcreener', 'bdscr', 'dvd', 'dvd-r', 'dvdrip', 'dvd rip', 'dvdr', 'dvdmux', 'dvdfull', 'dvd5', 'dvd9', 'dvd-rip', 'dvd.rip', 'dvd-mux', 'dvd.mux', 'dvd-5', 'dvd-9']
 		if fmtst == 'hdtv' or fmtst == 'dsr' or fmtst == 'dsrip' or fmtst == 'satrip' or fmtst == 'dthrip' or fmtst == 'dvbrip' or fmtst == 'pdtv' or fmtst == 'dtvrip' or fmtst == 'tvrip' or fmtst == 'hdtvrip':
 			fmt = ['hdtv', 'dsr', 'dsrip', 'satrip', 'dthrip', 'dvbrip', 'pdtv', 'dtvrip', 'tvrip', 'hdtvrip', 'hdtv-rip', 'hdtv.rip', 'hdtv rip']
 			fmtflex = fmt
 		if fmtst == 'vob' or fmtst == 'vodrip' or fmtst == 'vodr':
-			fmt = ['r5', 'r5line', 'line', 'r5.line', 'r5-line', 'r5 line']
+			fmt = ['vob', 'vodrip', 'vod rip', 'vod.rip', 'vod-rip', 'vodr']
 			fmtflex = fmt
 		if fmtst == 'webdl' or fmtst == 'webdlrip' or fmtst == 'dl':
 			fmt = ['web-dl', 'webdl', 'web.dl', 'web dl', 'webdlrip']
@@ -169,8 +176,6 @@ def loadsub():
 
 
 
-
-
 		filelocal = xbmc.getInfoLabel('Player.Filenameandpath')#funciona local
 		filestr = vidPath.split('/')[-1]#funciona em cache torrents seren
 
@@ -178,7 +183,7 @@ def loadsub():
 
 
 
-		if setting('notif'):
+		if setting('notif') == 'true':
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (fmtst, filestr, 4000))
 
 
@@ -212,7 +217,7 @@ def loadsub():
 		try:
 			lang = filter[0]['SubLanguageID']
 		except Exception:
-			if setting('strict'):
+			if setting('strict') == 'true':
 				raise Exception()
 			else:
 				for lang in langs:
@@ -248,11 +253,11 @@ def loadsub():
 		xbmc.Player().setSubtitles(subtitle)
 	
 
-		if setting('notif'):
+		if setting('notif') == 'true':
 			xbmc.sleep(4000)
 			test = [filter[0]['MovieReleaseName'], ]
 			xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (lang, test, 4000))
 
 	except Exception:
-		if setting('subsearch'):
+		if setting('subsearch') == 'true':
 			xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
