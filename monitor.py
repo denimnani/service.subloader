@@ -139,7 +139,6 @@ class SubLoaderPlayer(xbmc.Player):
                 xbmc.sleep(500)		
                 Debug('Started: AutoSearching for Subs')
                 #xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
-                #xbmc.executebuiltin('Notification("%s", "%s", "%s",)' % (file, movieFullPath, 40000))
                 loadsub()
                 #xbmc.executebuiltin('XBMC.RunScript(special://home/addons/service.autosubs/resources/lib/OpenSubtitles.py)')										
             else:
