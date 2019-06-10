@@ -20,15 +20,15 @@ msgid "Enable notifications"
 msgstr ""
 
 msgctxt "#32004"
-msgid "Custom delay in X seconds"
+msgid "Custom delay (seconds)"
 msgstr ""
 
 msgctxt "#32005"
-msgid "Look for a specific language"
+msgid "Exclude if subtitle is already loaded"
 msgstr ""
 
 msgctxt "#32006"
-msgid "Subtitle language"
+msgid "               - Subtitle language"
 msgstr ""
 
 msgctxt "#32007"
@@ -40,7 +40,7 @@ msgid "Exclude videos with less than X minutes"
 msgstr ""
 
 msgctxt "#32009"
-msgid "Ignore words, comma separated<"
+msgid "Ignore words (comma separated)"
 msgstr ""
 
 msgctxt "#32010"
@@ -48,7 +48,7 @@ msgid "Exclude live TV"
 msgstr ""
 
 msgctxt "#32011"
-msgid "Exclude http sources"
+msgid "Exclude http or https sources"
 msgstr ""
 
 msgctxt "#32012"
@@ -56,7 +56,7 @@ msgid "Exclude path"
 msgstr ""
 
 msgctxt "#32013"
-msgid "Folder's path (and subfolders)"
+msgid "               - Folder's path (and subfolders)"
 msgstr ""
 
 msgctxt "#32014"
@@ -64,55 +64,55 @@ msgid "Subtitles"
 msgstr ""
 
 msgctxt "#32015"
-msgid "Enable subtitles"
+msgid "Default behaviour"
 msgstr ""
 
 msgctxt "#32016"
-msgid "Enable utf"
+msgid "Opening subtitle dialog..."
 msgstr ""
 
 msgctxt "#32017"
-msgid "Enable strict subtitle match"
+msgid "Enable strict subtitle match (not recommended)"
 msgstr ""
 
 msgctxt "#32018"
-msgid "1º Language"
+msgid "               - 1º Language"
 msgstr ""
 
 msgctxt "#32019"
-msgid "2º Language"
+msgid "               - 2º Language"
 msgstr ""
 
 msgctxt "#32020"
-msgid "3º Language"
+msgid "               - 3º Language"
 msgstr ""
 
 msgctxt "#32021"
-msgid "Enable subtitles search as a fallback"
+msgid "Enable subtitle search as a fallback"
 msgstr ""
 
 msgctxt "#32022"
-msgid ""
+msgid "Download any subtitle if no match"
 msgstr ""
 
 msgctxt "#32023"
-msgid ""
+msgid "Auto subtitles"
 msgstr ""
 
 msgctxt "#32024"
-msgid ""
+msgid "Open subtitle dialog"
 msgstr ""
 
 msgctxt "#32025"
-msgid ""
+msgid "No release type detected"
 msgstr ""
 
 msgctxt "#32026"
-msgid ""
+msgid "Aborting..."
 msgstr ""
 
 msgctxt "#32027"
-msgid ""
+msgid "Select language to donwload"
 msgstr ""
 
 msgctxt "#32028"
