@@ -1,3 +1,13 @@
+0.1.0 - By Denim (10.06.2019)
+- Fixed instalation bug.
+- Fixed notifications bug.
+- Started Beta convergence.
+- Added default behavior selection.
+- Added auto donwload any subtitle if no match found.
+- Updated settings xml.
+- Updated strings po.
+- Release type detection improved.
+
 0.0.9 - By Denim
 - Release type detection improved.
 - More clean up.
