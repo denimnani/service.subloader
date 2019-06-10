@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <!-- General -->
-    <category id="general" label="32001">
-        <setting id="debug" type="bool" label="32002" default="false"/>
-		<setting id="notif" type="bool" label="32003" default="true"/>
-		<setting id="delay" type="number" label="32004" default="0"/>
+    <category label="32001">
+        <setting id="default" type="enum" label="32015" default="32023" lvalues="32023|32024"/>
+		<setting id="notif" type="bool" label="32003" visible="eq(-1,0)" default="true"/>
+		<setting id="delay" type="slider" label="32004" default="0" range="0, 30" option="int"/>
+		<setting id="debug" type="bool" label="32002" default="false"/>
+    </category>   
+    <!-- Exclusions visible="eq(-1,0)"-->
+    <category label="32007">	
         <setting id="check_for_specific" type="bool" default="false" label="32005"/>
-        <setting id="selected_language" type="select" enable="eq(-1,true)" visible="eq(-1,true)" label="32006" default="English" values="Albanian|Arabic|Belarusian|Bosnian (Latin)|Bulgarian|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Estonian|Finnish|French|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Korean|Latvian|Lithuanian|Macedonian|Norwegian|Polish|Portuguese|Romanian|Russian|SerbianLatin|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian|Vietnamese|Farsi|Malay" />
-    </category>
-    
-    <!-- Exclusions -->
-    <category id="exclusions" label="32007">	
-        <setting id="ExcludeTime" type="number" label="32008" default="15"/>
+        <setting id="selected_language" type="select" enable="eq(-1,true)" visible="eq(-1,true)" label="32006" default="English" values="Albanian|Arabic|Belarusian|Bosnian (Latin)|Bulgarian|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Estonian|Finnish|French|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Korean|Latvian|Lithuanian|Macedonian|Norwegian|Polish|Portuguese|Romanian|Russian|SerbianLatin|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian|Vietnamese|Farsi|Malay"/>
+        <setting id="ExcludeTime" type="slider" label="32008" default="0" range="1, 60" option="int"/>
         <setting id="ignore_words" type="text" default="theme" label="32009"/>
         <setting id="ExcludeLiveTV" type="bool" label="32010" default="false"/>
         <setting id="ExcludeHTTP" type="bool" label="32011" default="false"/>    
         <setting id="ExcludePathOption" type="bool" label="32012" default="false" />
-        <setting id="ExcludePath" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)" />
-        <setting id="ExcludePathOption2" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)" />
-        <setting id="ExcludePath2" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)" />
-        <setting id="ExcludePathOption3" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)" />
-        <setting id="ExcludePath3" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)" />
-        <setting id="ExcludePathOption4" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)" />
-        <setting id="ExcludePath4" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)" />
-        <setting id="ExcludePathOption5" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)" />
-        <setting id="ExcludePath5" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)" />
+        <setting id="ExcludePath" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)"/>
+        <setting id="ExcludePathOption2" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)"/>
+        <setting id="ExcludePath2" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)"/>
+        <setting id="ExcludePathOption3" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)"/>
+        <setting id="ExcludePath3" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)"/>
+        <setting id="ExcludePathOption4" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)"/>
+        <setting id="ExcludePath4" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)"/>
+        <setting id="ExcludePathOption5" type="bool" label="32012" default="false" visible= "eq(-2,true)" enable="eq(-2,true)"/>
+        <setting id="ExcludePath5" type="folder" source="video" label="32013" default="" visible= "eq(-1,true)" enable="eq(-1,true)"/>
     </category>
 	 <category label="32014">
-        <setting id="subtitles" type="bool" label="32015" default="false" />
-        <setting type="sep" />
-        <setting id="subtitles.utf" type="bool" label="32016" visible="false" default="false" />
-        <setting type="sep" />
-		<setting id="strict" type="bool" label="32017" enable="!eq(-4,false)" default="true" />
-		<setting type="sep" />
-        <setting id="subtitles.lang.1" type="select" label="32018" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" enable="!eq(-6,false)" default="English" />
-        <setting id="subtitles.lang.2" type="select" label="32019" values="None|Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" enable="!eq(-7,false)" default="None" />
-		<setting id="subtitles.lang.3" type="select" label="32020" values="None|Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" enable="!eq(-8,false)" default="None" />
-		<setting id="subsearch" type="bool" label="32021" enable="!eq(-9,false)" default="true" />
+		<setting id="dummy" type="bool" label="32027" visible="true" default="true"/>
+        <setting id="subtitles.lang.1" type="select" label="32018" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" visible="true" default="English"/>
+        <setting id="subtitles.lang.2" type="select" label="32019" values="None|Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" visible="true" default="None"/>
+		<setting id="subtitles.lang.3" type="select" label="32020" values="None|Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" visible="true" default="None"/>
+		<setting id="strict" type="bool" label="32017" visible="true" default="false"/>
+		<setting id="anysub" type="bool" label="32022" visible="eq(-1,false)" default="false"/>
+		<setting id="subsearch" type="bool" label="32021" visible="true" default="true"/>
     </category>
 </settings>
