@@ -70,21 +70,19 @@ def loadsub():
 
 # Get release type *****************************************************************************************************************************************************************************************
 
-		vidPath = xbmc.Player().getPlayingFile()
+		vidPath = (xbmc.Player().getPlayingFile()).lower()
 		fmt = re.split('[.:;()[\]{}\\\\/\s\&€\#\=\$\?\!%\+\-_\*[0-9]', vidPath)
-		fmt = [i.lower() for i in fmt]
 		fmt = [i for i in fmt if i in release]
 		fmt = list(dict.fromkeys(fmt))
 		fmtst = ''.join(fmt)
 		fmtflex = ''
 
 		if fmt:
-			secvidPath = vidPath.split(fmtst)[-1]
+			secvidPath = (vidPath.lower()).split(fmtst)[-1]
 		else:
 			secvidPath = vidPath
 
 		secfmt = re.split('[.:;()[\]{}\\\\/\s\&€\#\=\$\?\!%\+\-_\*[0-9]', secvidPath)
-		secfmt = [i.lower() for i in secfmt]
 		secfmt = [i for i in secfmt if i in secrelease]
 		secfmt = list(dict.fromkeys(secfmt))
 		fmt = fmt + secfmt
