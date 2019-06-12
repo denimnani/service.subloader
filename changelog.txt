@@ -1,3 +1,7 @@
+0.1.1 - By Denim (12.06.2019)
+- Fixed release detection bug.
+- Fixed typo.
+
 0.1.0 - By Denim (10.06.2019)
 - Fixed instalation bug.
 - Fixed notifications bug.
