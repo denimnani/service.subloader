@@ -96,7 +96,7 @@ msgid "Download any subtitle if no match"
 msgstr ""
 
 msgctxt "#32023"
-msgid "Auto subtitles"
+msgid "Automatic subtitles"
 msgstr ""
 
 msgctxt "#32024"
