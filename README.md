@@ -1,11 +1,11 @@
-# Sub Loader
+# SubLoader
 
 
-> ### About Sub Loader
+> ### About SubLoader
 
-Sub Loader allow you to automatically load subtitles for your content.
-It uses OpenSubtitles.org as subtitles source.
-There are custom settings to trigger the service.
+SubLoader allow you to automatically load subtitles for your content.
+Special thanks to [OpenSubtitles.org](http://www.opensubtitles.org ) for providing a great source of subtitles.
+![OpenSubtitles.org](http://static.opensubtitles.org/gfx/logo-transparent.png)
 
 
 > ### Issues
