@@ -17,8 +17,7 @@ def loadsub():
 		setting = xbmcaddon.Addon(addon).getSetting
 		localize = xbmcaddon.Addon(addon).getLocalizedString
 		server = xmlrpclib.Server('http://api.opensubtitles.org/xml-rpc', verbose=0)
-#		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_v1')['token'] (token antigo)
-		token = server.LogIn('', '', 'en', 'XBMC_Subtitles_Unofficial_v5.2.15')['token']
+		token = server.LogIn('', '', 'en', 'kodi_subloader_v0.1.0')['token']
 		media = xbmc.Player().getVideoInfoTag().getMediaType()
 
 		langDict = {
