@@ -126,7 +126,7 @@ class SubLoaderPlayer(xbmc.Player):
 				Debug('Started: AutoSearching for Subs')
 				if getSetting('default') == '0':
 					loadsub()
-#					xbmc.executebuiltin('XBMC.RunScript(special://home/addons/service.subloader/resources/lib/teste.py)')
+#					xbmc.executebuiltin('XBMC.RunScript(special://home/addons/service.subloader/resources/lib/testes.py)')
 				else:
 					xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')									
 			else:
