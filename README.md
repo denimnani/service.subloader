@@ -1,4 +1,4 @@
-# ![SubLoader](https://github.com/denimnani/service.subloader/blob/master/iconsubloader.png )
+# SubLoader
 
 
 > ### About SubLoader
