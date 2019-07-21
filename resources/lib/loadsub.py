@@ -5,6 +5,9 @@ import os, sys, xbmc, xbmcaddon, xbmcgui
 import base64, gzip, xmlrpclib, xbmcvfs
 import StringIO, re, hashlib, json, urlparse
 import codecs, urllib, xbmcplugin
+from resources.lib import utils
+from resources.lib.utils import boolsetting, setting, localize
+from resources.lib.OSserver import OStoken
 
 
 def loadsub():
@@ -13,11 +16,16 @@ def loadsub():
 # Common ***************************************************************************************************************************************************************************************************
 
 	try:
+
+		if boolsetting('OScustomuser'):
+			if setting('OSuser') != setting('OSusercheck') or setting('OSpassword') != setting('OSpasswordcheck'):
+				xbmc.executebuiltin('Notification("SubLoader", "%s", "%s",)' % (localize(32034), 4000))
+				raise Exception()
+		
 		addon = "service.subloader"#alterar quando estiver tudo ligado
-		setting = xbmcaddon.Addon(addon).getSetting
 		localize = xbmcaddon.Addon(addon).getLocalizedString
 		server = xmlrpclib.Server('http://api.opensubtitles.org/xml-rpc', verbose=0)
-		token = server.LogIn('', '', 'en', 'kodi_subloader_v0.1.0')['token']
+#		token = server.LogIn('', '', 'en', 'kodi_subloader_v0.1.3')['token']
 		media = xbmc.Player().getVideoInfoTag().getMediaType()
 
 		langDict = {
@@ -56,11 +64,11 @@ def loadsub():
 	
 # Subtitle language ****************************************************************************************************************************************************************************************
 
-		langs.append(langDict[setting('subtitles.lang.1')])
-		if not setting('subtitles.lang.2') == 'None':
-			langs.append(langDict[setting('subtitles.lang.2')])
-		if not setting('subtitles.lang.3') == 'None':
-			langs.append(langDict[setting('subtitles.lang.3')])
+		langs.append(langDict[setting('sublang1')])
+		if not setting('sublang2') == "-----":
+			langs.append(langDict[setting('sublang2')])
+		if not setting('sublang3') == "-----":
+			langs.append(langDict[setting('sublang3')])
 			
 		sublanguageid = ','.join(langs)
 
@@ -165,34 +173,34 @@ def loadsub():
 			if imdbid is not 'None':
 				season = xbmc.Player().getVideoInfoTag().getSeason()
 				episode = xbmc.Player().getVideoInfoTag().getEpisode()
-				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'imdbid': imdbid, 'season': season, 'episode': episode}])['data']
+				result = server.SearchSubtitles(OStoken(), [{'sublanguageid': sublanguageid, 'imdbid': imdbid, 'season': season, 'episode': episode}])['data']
 			else:
 				season = xbmc.Player().getVideoInfoTag().getSeason()
 				episode = xbmc.Player().getVideoInfoTag().getEpisode()
 				query = (xbmc.Player().getVideoInfoTag().getTVShowTitle()).lower()
-				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'query': query, 'season': season, 'episode': episode}])['data']
+				result = server.SearchSubtitles(OStoken(), [{'sublanguageid': sublanguageid, 'query': query, 'season': season, 'episode': episode}])['data']
 		else:
 			if imdbid is not 'None':
-				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'imdbid': imdbid}])['data']
+				result = server.SearchSubtitles(OStoken(), [{'sublanguageid': sublanguageid, 'imdbid': imdbid}])['data']
 			else:
 				title = (xbmc.Player().getVideoInfoTag().getOriginalTitle()).lower()
 				year = xbmc.Player().getVideoInfoTag().getYear()
 				query = title + " " + str(year)
-				result = server.SearchSubtitles(token, [{'sublanguageid': sublanguageid, 'query': query}])['data']
+				result = server.SearchSubtitles(OStoken(), [{'sublanguageid': sublanguageid, 'query': query}])['data']
 
 #***********************************************************************************************************************************************************************************************************
 
 
 # Filter and subtilte set **********************************************************************************************************************************************************************************
 
-		result = [i for i in result if i['SubSumCD'] == '1']
+		result = [i for i in result if i['SubSumCD'] == '1']#ver aqui o non result
 	
 		for lang in langs:
 			filter += [i for i in result if i['SubLanguageID'] == lang and any(x in i['MovieReleaseName'].lower() for x in fmt)]
 		try:
 			lang = filter[0]['SubLanguageID']
 		except Exception:
-			if setting('strict') == 'true':
+			if setting('flex') == 'false':
 				raise Exception()
 			else:
 				for lang in langs:
@@ -200,14 +208,14 @@ def loadsub():
 					try:
 						lang = filter[0]['SubLanguageID']
 					except Exception:
-						if setting('strict') == 'false' and setting('anysub') == 'true':
+						if setting('anysub') == 'true':
 							for lang in langs:
 								filter += [i for i in result if i['SubLanguageID'] == lang]
 						else:
 							raise Exception()
 						
 		content = [filter[0]['IDSubtitleFile'], ]
-		content = server.DownloadSubtitles(token, content)
+		content = server.DownloadSubtitles(OStoken(), content)
 		content = base64.b64decode(content['data'][0]['data'])
 		content = gzip.GzipFile(fileobj=StringIO.StringIO(content)).read()
 		subtitle = xbmc.translatePath('special://temp/')
