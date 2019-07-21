@@ -5,7 +5,7 @@
 
 SubLoader allow you to automatically load subtitles for your content.
 
-Special thanks to [OpenSubtitles.org](http://www.opensubtitles.org ) for providing a great source of subtitles.
+Special thanks to [OpenSubtitles.org](http://www.opensubtitles.org ) for providing a unique UA for Subloader.
 
 ![OpenSubtitles.org](http://static.opensubtitles.org/gfx/logo-transparent.png)
 
