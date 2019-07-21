@@ -1,142 +1,113 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-import os, sys, xbmc, xbmcaddon
-import re, json, time, codecs
-import hashlib, urllib, base64
-import xmlrpclib, gzip, StringIO
+import os, sys, xbmc, time
 from resources.lib.loadsub import loadsub
+from resources.lib.exclusions import globalexclusion
+from resources.lib.OSserver import OSusersetting, OSuser
+from resources.lib.utils import setting, boolsetting, setsetting, localize, debug, debugsetting
 
 
-__addon__ = xbmcaddon.Addon()
-__author__ = __addon__.getAddonInfo('author')
-__scriptid__ = __addon__.getAddonInfo('id')
-__scriptname__ = __addon__.getAddonInfo('name')
-__cwd__ = __addon__.getAddonInfo('path')
-__version__ = __addon__.getAddonInfo('version')
-__language__ = __addon__.getLocalizedString
-debug = __addon__.getSetting("debug")
-__cwd__ = xbmc.translatePath(__addon__.getAddonInfo('path')).decode("utf-8")
-__profile__ = xbmc.translatePath(__addon__.getAddonInfo('profile')).decode("utf-8")
-__resource__ = xbmc.translatePath(os.path.join(__cwd__, 'resources')).decode("utf-8")
-__settings__ = xbmcaddon.Addon("service.subloader")
-ignore_words = (__settings__.getSetting('ignore_words').split(','))
-ExcludeTime = int((__settings__.getSetting('ExcludeTime')))*60
-sys.path.append(__resource__)
+#Main Monitor********************************************************************************************************************************************
+
+class SubLoaderMonitor(xbmc.Monitor):
 
 
-def Debug(msg, force = False):
-	if(debug == "true" or force):
-		try:
-			print "#####[SubLoader]##### " + msg
-		except UnicodeEncodeError:
-			print "#####[SubLoader]##### " + msg.encode( "utf-8", "ignore" )
+	def __init__(self):
+		xbmc.Monitor.__init__(self)
+		debug("Initalized main monitor")
+		self.run = True
 
-Debug("Loading '%s' version '%s'" % (__scriptname__, __version__))
+	def onSettingsChanged(self):
 
-# helper function to get string type from settings
-def getSetting(setting):
-	return __addon__.getSetting(setting).strip()
+		if self.run:	
 
-# helper function to get bool type from settings
-def getSettingAsBool(setting):
-	return getSetting(setting).lower() == "true"
+			if debugsetting():
+				self.run = False
+				debug('Debug settings changed')
+				setsetting('debugcheck', value=setting('debug'))
+				global closedebug
+				closedebug = boolsetting('debug')
+				debug('Debug initalized')
+				if not closedebug:
+					debug('Debug stopped', force = True)
 
-# check exclusion settings for filename passed as argument
-def isExcluded(movieFullPath):
+			if OSusersetting():
+				self.run = False
+				debug('OS User settings changed')
+				if OSuser():
+					xbmc.executebuiltin('Notification("SubLoader", "%s", "%s",)' % (localize(32033), 4000))
+					setsetting('OSusercheck', value=setting('OSuser'))
+					setsetting('OSpasswordcheck', value=setting('OSpassword'))
+					debug('OS Login: successful')
+				else:
+					xbmc.executebuiltin('Notification("SubLoader", "%s", "%s",)' % (localize(32034), 4000))
+					setsetting('OSusercheck', value='nouser')
+					setsetting('OSpasswordcheck', value='nopassword')
+					debug('OS Login: unsuccessful')
 
-	if not movieFullPath:
-		return False
+		else:
+			xbmc.sleep(1000)
+			self.run = True
 
-	Debug("isExcluded(): Checking exclusion settings for '%s'." % movieFullPath)
 
-	if (movieFullPath.find("pvr://") > -1) and getSettingAsBool('ExcludeLiveTV'):
-		Debug("isExcluded(): Video is playing via Live TV, which is currently set as excluded location.")
-		return False
+monitor = SubLoaderMonitor()
 
-	if (movieFullPath.find("http://") > -1 or movieFullPath.find("https://") > -1) and getSettingAsBool('ExcludeHTTP'):
-		Debug("isExcluded(): Video is playing via HTTP or HTTPS source, which is currently set as excluded location.")
-		return False
 
-	ExcludePath = getSetting('ExcludePath')
-	if ExcludePath and getSettingAsBool('ExcludePathOption'):
-		if (movieFullPath.find(ExcludePath) > -1):
-			Debug("isExcluded(): Video is playing from '%s', which is currently set as excluded path 1." % ExcludePath)
-			return False
-
-	ExcludePath2 = getSetting('ExcludePath2')
-	if ExcludePath2 and getSettingAsBool('ExcludePathOption2'):
-		if (movieFullPath.find(ExcludePath2) > -1):
-			Debug("isExcluded(): Video is playing from '%s', which is currently set as excluded path 2." % ExcludePath2)
-			return False
-
-	ExcludePath3 = getSetting('ExcludePath3')
-	if ExcludePath3 and getSettingAsBool('ExcludePathOption3'):
-		if (movieFullPath.find(ExcludePath3) > -1):
-			Debug("isExcluded(): Video is playing from '%s', which is currently set as excluded path 3." % ExcludePath3)
-			return False
-
-	ExcludePath4 = getSetting('ExcludePath4')
-	if ExcludePath4 and getSettingAsBool('ExcludePathOption4'):
-		if (movieFullPath.find(ExcludePath4) > -1):
-			Debug("isExcluded(): Video is playing from '%s', which is currently set as excluded path 4." % ExcludePath4)
-			return False
-
-	ExcludePath5 = getSetting('ExcludePath5')
-	if ExcludePath5 and getSettingAsBool('ExcludePathOption5'):
-		if (movieFullPath.find(ExcludePath5) > -1):
-			Debug("isExcluded(): Video is playing from '%s', which is currently set as excluded path 5." % ExcludePath5)
-			return False
-
-	return True
-
+#Player monitor******************************************************************************************************************************************
 
 class SubLoaderPlayer(xbmc.Player):
 
 	def __init__(self, *args, **kwargs):
 		xbmc.Player.__init__(self)
-		Debug("Initalized")
+		debug('Initalized player monitor')
 		self.run = True
 
 	def onPlayBackStopped(self):
-		Debug("Stopped")
+		debug('Playback stopped')
 		self.run = True
 
 	def onPlayBackEnded(self):
-		Debug("Ended")
+		debug('Playback ended')
 		self.run = True
 
 	def onAVStarted(self):
-		check_for_specific = (__addon__.getSetting('check_for_specific').lower() == 'true')
-		specific_language = (__addon__.getSetting('selected_language'))
-		specific_language = xbmc.convertLanguage(specific_language, xbmc.ISO_639_2)
 		self.run = True
-		st = int((__addon__.getSetting('delay')))*1000
+		delay = int(setting('delay'))*1000
 
 		if self.run:
-			xbmc.sleep(st)		
-			movieFullPath = xbmc.Player().getPlayingFile()
-			Debug("movieFullPath '%s'" % movieFullPath)
-			availableLangs = xbmc.Player().getAvailableSubtitleStreams()
-			Debug("availableLangs '%s'" % availableLangs)
-			totalTime = xbmc.Player().getTotalTime()
-			Debug("totalTime '%s'" % totalTime)
-
-			if (xbmc.Player().isPlayingVideo() and totalTime > ExcludeTime and ((not xbmc.getCondVisibility("VideoPlayer.HasSubtitles")) or (check_for_specific and not specific_language in availableLangs)) and all(movieFullPath.find (v) <= -1 for v in ignore_words) and (isExcluded(movieFullPath)) ):
+			xbmc.sleep(delay)		
+			if xbmc.Player().isPlayingVideo() and globalexclusion():
 				self.run = False	
-				Debug('Started: AutoSearching for Subs')
-				if getSetting('default') == '0':
+				if setting('default') == '0':
+					debug('Default: automatic subtitles')
 					loadsub()
 #					xbmc.executebuiltin('XBMC.RunScript(special://home/addons/service.subloader/resources/lib/testes.py)')
+				elif setting('default') == '1':
+					debug('Default: opening search dialog')
+					xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')
 				else:
-					xbmc.executebuiltin('XBMC.ActivateWindow(SubtitleSearch)')									
+					debug('Default: do nothing...')
 			else:
-				Debug('Started: Subs found or Excluded')
 				self.run = False
 
 
-player_monitor = SubLoaderPlayer()
+player = SubLoaderPlayer()
 
-while not xbmc.abortRequested:
-	xbmc.sleep(1000)
+
+#Abort request*******************************************************************************************************************************************
+
+closedebug = boolsetting('debug')
+
+while not xbmc.Monitor().abortRequested():
 	
-del player_monitor
+	if xbmc.Monitor().waitForAbort(10):
+		if closedebug:
+			debug('Shutdown requested', force = True)
+			debug('Player monitor stopped', force = True)
+			debug('Main monitor stopped', force = True)
+		del player
+		del monitor
+		break
+
+#********************************************************************************************************************************************************
