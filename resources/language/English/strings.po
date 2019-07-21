@@ -112,7 +112,7 @@ msgid "Aborting..."
 msgstr ""
 
 msgctxt "#32027"
-msgid "Select language to donwload"
+msgid "Select language to download"
 msgstr ""
 
 msgctxt "#32028"
