@@ -1,4 +1,8 @@
-﻿0.1.3 - By Denim (21.07.2019)
+﻿﻿0.1.4 - By Denim (23.07.2019)
+- Added Dutch language (Special thanks to Tinuz97).
+- Clean up project files.
+ 
+ 0.1.3 - By Denim (21.07.2019)
 - Added OS user login.
 - Fixed debug option.
 - Added more debug information.
