@@ -1,1 +1,193 @@
+# Kodi Media Center language file
+# Addon Name: Sub Loader
+# Addon id: service.subloader
+# Addon Provider: DenimNani
+# Language: Dutch
+# Translator : Tinuz
 
+msgid ""
+msgstr ""
+
+msgctxt "#32001"
+msgid "General"
+msgstr "Algemeen"
+
+msgctxt "#32002"
+msgid "Enable debug mode"
+msgstr "Schakel de foutopsporingsmodus in"
+
+msgctxt "#32003"
+msgid "Enable notifications"
+msgstr "Notificaties aanzetten"
+
+msgctxt "#32004"
+msgid "Custom delay (seconds)"
+msgstr "Aangepaste vertraging (seconden)"
+
+msgctxt "#32005"
+msgid "Exclude subtitle"
+msgstr "Ondertiteling uitsluiten"
+
+msgctxt "#32006"
+msgid "     - Language"
+msgstr "    - Taal"
+
+msgctxt "#32007"
+msgid "Exclusions"
+msgstr "Uitsluitingen"
+
+msgctxt "#32008"
+msgid "Exclude videos with less than (minutes)"
+msgstr "Video's uitsluiten met minder dan (minuten)"
+
+msgctxt "#32009"
+msgid "Exclude words (comma separated)"
+msgstr "Woorden uitsluiten (door komma's gescheiden)"
+
+msgctxt "#32010"
+msgid "Exclude live TV"
+msgstr "Live TV uitsluiten"
+
+msgctxt "#32011"
+msgid "Exclude http or https sources"
+msgstr "Sluit http of https bronnen uit"
+
+msgctxt "#32012"
+msgid "Exclude path"
+msgstr "Pad uitsluiten"
+
+msgctxt "#32013"
+msgid "     - Folder's path (and subfolders)"
+msgstr "    - Pad van map (en submappen)"
+
+msgctxt "#32014"
+msgid "Subtitles"
+msgstr "Ondertitels"
+
+msgctxt "#32015"
+msgid "Default behaviour"
+msgstr "Standaard gedrag"
+
+msgctxt "#32016"
+msgid "Opening subtitle dialog..."
+msgstr "Ondertitelingsvenster openen ..."
+
+msgctxt "#32017"
+msgid "- 2º Try secundary match"
+msgstr "- 2º Probeer secundaire match"
+
+msgctxt "#32018"
+msgid "- 1º Language"
+msgstr "- 1º Taal"
+
+msgctxt "#32019"
+msgid "- 2º Language"
+msgstr "- 2º Taal"
+
+msgctxt "#32020"
+msgid "- 3º Language"
+msgstr "- 3º Taal"
+
+msgctxt "#32021"
+msgid "- 4º Open subtitle dialog"
+msgstr "- 4º Dialoog voor ondertitels openen"
+
+msgctxt "#32022"
+msgid "- 3º Try any subtitle"
+msgstr "- 3º Probeer een ondertiteling"
+
+msgctxt "#32023"
+msgid "Automatic subtitles"
+msgstr "Automatische ondertitels"
+
+msgctxt "#32024"
+msgid "Open subtitle dialog"
+msgstr "Ondertitelingsvenster openen"
+
+msgctxt "#32025"
+msgid "No release type detected"
+msgstr "Geen release type gedetecteerd"
+
+msgctxt "#32026"
+msgid "Aborting..."
+msgstr "Afbreken ..."
+
+msgctxt "#32027"
+msgid "Languages to download"
+msgstr "Talen om te downloaden"
+
+msgctxt "#32028"
+msgid "Enable OpenSubtitles.org custom user"
+msgstr "Aangepaste gebruiker OpenSubtitles.org inschakelen"
+
+msgctxt "#32029"
+msgid "     - User"
+msgstr "    - Gebruiker "
+
+msgctxt "#32030"
+msgid "     - Password"
+msgstr "    - Wachtwoord"
+
+msgctxt "#32031"
+msgid "(Login not required)"
+msgstr "(Inloggen niet vereist)"
+
+msgctxt "#32032"
+msgid "Login"
+msgstr "Log in"
+
+msgctxt "#32033"
+msgid "Login successful"
+msgstr "Succesvol ingelogd"
+
+msgctxt "#32034"
+msgid "Fail to login"
+msgstr "Inloggen mislukt"
+
+msgctxt "#32035"
+msgid "Exclude addons"
+msgstr "Add-ons uitsluiten"
+
+msgctxt "#32036"
+msgid "Exclude audio"
+msgstr "Audio uitsluiten"
+
+msgctxt "#32037"
+msgid "Language exclusions"
+msgstr "Taal uitsluitingen"
+
+msgctxt "#32038"
+msgid "Variable exclusions"
+msgstr "Variabele uitsluitingen"
+
+msgctxt "#32039"
+msgid "External sources exclusions"
+msgstr "Externe bronnen uitsluitingen"
+
+msgctxt "#32040"
+msgid "Internal sources exclusions"
+msgstr "Uitsluitingen van interne bronnen"
+
+msgctxt "#32041"
+msgid "Sorting options"
+msgstr "Sorteer opties"
+
+msgctxt "#32042"
+msgid "Users"
+msgstr "Gebruikers"
+
+msgctxt "#32043"
+msgid "Bypass "Undetermined" audio"
+msgstr "Bypass "Onbepaalde" audio"
+
+msgctxt "#32044"
+msgid "- 1º Best match"
+msgstr "- 1º Beste match"
+
+msgctxt "#32045"
+msgid "Do nothing"
+msgstr "Niets doen"
+
+msgctxt "#32046"
+msgid ""
+msgstr ""
