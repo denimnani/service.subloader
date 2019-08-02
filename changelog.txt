@@ -13,6 +13,7 @@
 - Improved sorting settings.
 - Improved settings layout.
 - Added "Do nothing" option.
+- Fixed typo (Special thanks to AlexNaga).
 
 0.1.2 - By Denim (17.06.2019)
 - Added a unique User Agent from Opensubtitles.org.
