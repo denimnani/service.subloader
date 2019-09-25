@@ -1,31 +1,24 @@
 # SubLoader
 
-
 > ### About SubLoader
-
-SubLoader allow you to automatically load subtitles for your content.
+SubLoader allows you to load subtitles for your content automatically.
 
 Special thanks to [OpenSubtitles.org](http://www.opensubtitles.org ) for providing a unique UA for Subloader.
 
 ![OpenSubtitles.org](http://static.opensubtitles.org/gfx/logo-transparent.png)
 
-
 > ### Issues
+The addon is currently in Alpha stage. There are some bugs and several features to be added.
 
-Currently the addon is in Alpha stage, there are some bugs and a lot of features to add.
+If you use this addon and have installed the addon "service.autosubs" please disable it; otherwise, the subloader won't function correctly.
 
-If you use this addon and have installed the addon "service.autosubs" please disable it, otherwise the subloader will not perform properly.
+The subloader needs a valid IMDBNumber, and the filename must include the media quality to work correctly. If your content doesn't provide a valid IMDBNumber, the addon tries to do a query search. This search typically takes at least 10 seconds to complete.
 
-The subloader need an valid IMDBNumber and the file name with the media quality to work properly, if your content don't provide a valid IMDBNumber the addon will try by query search. This type of search take some time to complete, in most cases at least 10 seconds.
+Most likely your episodes won't have an IMDBNumber because Kodi scrapper does not provide it at an episode level.
 
-So, most likly your episodes will not have IMDBNumber because Kodi scrapper do not provide it at episode level.
-
-For now the addon is only compatible with Kodi 18.0 or higher.
+For now, the addon is only compatible with Kodi 18.0 or higher.
 
 > ### Development
+SubLoader is a fork from the well-known autosubs addon. It also contains some code from a Jen base addon. All credits go to the original developers.
 
-Sub Loader is a fork from the well known autosubs addon, all credits to the original developers.
-
-It also contains some code from an jen base addon, all credits to the original developers.
-
-I'm not a programmer, all i do is try and error to find a possible solution, so please if some one want's to help pushing this addon forward, be my guest.
+I'm not a programmer; all I do is trial and error to find a possible solution. So please if someone wants to help out and to push this addon forward, be my guest.
