@@ -1,4 +1,6 @@
-0.X.X
+0.1.5	- By Denim (21.02.2021)
+- Subloader now runs on KODI v19 (Special thanks to peno/64).
+- Added python 3 compatibility.
 - Some grammatical corrections (Special thanks to AlexNaga).
 
 0.1.4 - By Denim (23.07.2019)
