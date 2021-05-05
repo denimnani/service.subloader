@@ -21,26 +21,17 @@ Special thanks to OpenSubtitles.org for providing a unique UA for Subloader.</de
     <source>https://github.com/denimnani/service.subloader</source>
     <forum></forum>
     <email></email>
-	<news>0.1.5     21.02.2021
+	<news>0.1.6     05.05.2021
+Bug fix on open subtitle dialog.
+
+0.1.5     21.02.2021
 Subloader now runs on KODI v19 (Special thanks to peno/64).
 Added python 3 compatibility.
 Some grammatical corrections (Special thanks to AlexNaga).
 
 0.1.4     23.07.2019
 Added Dutch language (Special thanks to Tinuz97).
-Clean up project files.
-
-0.1.3     21.07.2019
-Added OS user login.
-Fixed debug option.
-Added more debug information.
-Massive code rewrite.
-Several optimizations.
-Added audio language exclusions.
-Added video addon exclusions.
-Improved sorting settings.
-Improved settings layout.
-Added Do nothing option.
-Fixed typo (Special thanks to AlexNaga).</news>
+Clean up project files.</news>
   </extension>
 </addon>
+</addons>
