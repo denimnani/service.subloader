@@ -85,6 +85,13 @@ def videopath():
 
 
 def videosource():
+        filepath = xbmc.getInfoLabel('Player.Filenameandpath')
+        fileext = os.path.splitext(filepath)
+        if fileext[1] == '.strm':
+                file = xbmcvfs.File(filepath, 'r')
+                source = file.read()
+                file.close()
+                return source # A .strm file contains actual source inside
         return xbmc.getInfoLabel('Player.Folderpath')
 
 
