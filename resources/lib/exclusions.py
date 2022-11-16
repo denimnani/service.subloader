@@ -96,7 +96,7 @@ def pathexclusion():
 	if not videopath():
 		return False
 
-	if (videopath().find("pvr://") > -1) and boolsetting('excludelivetv'):
+        if ((videopath().find("pvr://") > -1) or (videosource().find("pvr://") > -1)) and boolsetting('excludelivetv'):
 		debug('Video is playing via Live TV, which is currently set as excluded location.')
 		return False
 
